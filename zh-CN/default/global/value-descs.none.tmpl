@@ -1,0 +1,60 @@
+[%# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+  #
+  # This Source Code Form is "Incompatible With Secondary Licenses", as
+  # defined by the Mozilla Public License, v. 2.0.
+  #%]
+
+[%# You can use this hash to localize (translate) the values displayed
+  # for drop-down and multiple-select fields. Lines starting with "#"
+  # are comments.
+  #%]
+[% value_descs = {
+  "rep_platform"={
+  	"ALL"=>"全部",
+  	"Other"="其它"
+  },
+  "op_sys"={
+  "ALL"=>"全部",
+  	"Other"="其它"
+  },
+  "bug_status" => {
+    "UNCONFIRMED" => "待确认",
+    "CONFIRMED"   => "已确认",
+    "NEW"         => "新提交",
+    "ASSIGNED"    => "已分配",
+    "IN_PROGRESS" => "处理中",
+    "RESOLVED"	  => "待返测",
+    "VERIFIED"    => "待归档",
+    "CLOSED"      => "已解决"
+  },
+
+  "resolution" => {
+    ""        => "---",
+    "FIXED"      => "已修复",
+    "INVALID"    =>"无效的",
+    "WONTFIX"    =>"无法修复",
+    "DUPLICATE"  =>"重复的",
+    "REMIND"     =>"保留的",
+    "LATER"      =>"以后版本解决",
+    "WORKSFORME" => "无法重现"
+  },
+  "bug_severity"={
+  	"blocker"=>"有妨碍的",
+  	"critical"=>"紧要的",
+  	"major"=>"严重的",
+  	"normal"=>"普通的",
+  	"minor"=>"次要的",
+  	"tivial"=>"不严重的",
+  	"enhancement"=>"建议的"
+  },
+  "prority"={
+  "Highest"=>"紧要",
+  "High"=>"优先",
+  "Normal"=>"正常",
+  "Low"=>"稍缓",
+  "Lowest"=>"不紧急",
+  ""=>""
+  }
+} %]

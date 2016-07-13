@@ -1,0 +1,56 @@
+[%# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+  #
+  # This Source Code Form is "Incompatible With Secondary Licenses", as
+  # defined by the Mozilla Public License, v. 2.0.
+  #%]
+
+[%# INTERFACE:
+  # none
+  #%]
+
+[% title = BLOCK %]Welcome to [% terms.Bugzilla %][% END %]
+
+[% PROCESS global/header.html.tmpl
+   title = title
+   header_addl_info = "version $constants.BUGZILLA_VERSION"
+   style_urls = [ 'skins/standard/index.css' ]
+%]
+
+<div id="welcome-admin">
+  <p>欢迎, [% user.identity FILTER html %].</p>
+
+  <p>系统的一些核心参数还没有设置，请按下文描述完成安装。</p>
+
+  <p>作为系统管理员，可以通过页面底部的<a href="admin.cgi">管理员</a> 链接访问后台管理页面。
+  但在完成安装之前，还需要通过<a href="editparams.cgi">参数设置</a> 页面配置一些重要的安装参数，其中包括：</p>
+
+  <ul>
+    <li><a href="editparams.cgi?section=core#urlbase_desc">urlbase</a>, 系统安装的基地址，该地地址也会用于email (只要这个参数没设置，该页面将一直出现).</li>
+
+    <li><a href="editparams.cgi?section=core#cookiepath_desc">cookiepath</a>, cookie路径，便于浏览器正确管理cookie。</li>
+
+    <li><a href="editparams.cgi?section=general#maintainer_desc">maintainer</a>,
+      描述发生内部错误时，显示的维护信息。</li>
+  </ul>
+
+  <p>另外一些重要参数:</p>
+
+  <ul>
+    <li><a href="editparams.cgi?section=auth#requirelogin_desc">requirelogin</a>, 若开启，仅登录用户可查看[% terms.Bugs %]</li>
+
+    <li><a href="editparams.cgi?section=auth#createemailregexp_desc">createemailregexp</a>,
+    定义允许哪些用户名是可用的。 如果设置为".*"(默认值), 允许任何用户名。若设置为"@mycompany.com$",
+    则仅允许拥有 @mycompany.com 邮箱的用户创建账户。该项留空，则表示仅允许管理员创建账户。如果仅内部使用，请修改默认值。</li>
+
+    <li><a href="editparams.cgi?section=mta#mail_delivery_method_desc">mail_delivery_method</a>,
+    设置邮件发送方式， 如 sendmail or SMTP。若设置错误，邮件将无法发送。</li>
+  </ul>
+
+  <p>
+    以上参数设置完成之后，建议也看看 [% terms.Bugzilla %]的其他参数，参数都有详细的描述，可根据需要调整。
+  </p>
+</div>
+
+[% PROCESS global/footer.html.tmpl %]
