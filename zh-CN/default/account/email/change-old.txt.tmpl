@@ -8,20 +8,18 @@
 
 From: [% Param('mailfrom') %]
 To: [% emailaddress %]
-Subject: [% terms.Bugzilla %] Change Email Address Request
+Subject: [% terms.Bugzilla %] 更改邮件地址请求
 Importance: High
 X-MSMail-Priority: High
 X-Priority: 1
 X-Bugzilla-Type: admin
 
-[%+ terms.Bugzilla %] has received a request to change the email address
-for your account to [%+ newemailaddress %].
+[%+ terms.Bugzilla %] 收到将你的帐号变更改为使用 [%+ newemailaddress %] 注册的请求。
 
-If you are not the person who made this request, or you wish to cancel
-this request, visit the following link:
+如果你并非提出此项请求的人，或者你想要取消此项请求，请点击以下链接：
 
 [%+ urlbase %]token.cgi?t=[% token FILTER uri %]&a=cxlem
 
-If you do nothing, and [%+ newemailaddress %] confirms this request,
-the change will be made permanent after [% constants.MAX_TOKEN_AGE %] days
-(on [% expiration_ts FILTER time("%B %e, %Y at %H:%M %Z") %]).
+如果你什么也不做，而且 [%+ newemailaddress %] 也确认了此请求，
+那么此项变更将会在 [% constants.MAX_TOKEN_AGE %] 天后
+([% expiration_ts FILTER time("%Y-%m-%d %H:%M %Z") %]) 生效。

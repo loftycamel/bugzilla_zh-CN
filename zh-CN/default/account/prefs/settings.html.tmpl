@@ -23,9 +23,9 @@
 [% IF settings.size %]
   [% UNLESS has_settings_enabled %]
     <p class="criticalmessages">
-      All user preferences have been disabled by the
-      <a href="mailto:[% Param("maintainer") %]">maintainer</a>
-      of this installation, and so you cannot customize any.
+      所有的设置选项已经被
+      <a href="mailto:[% Param("maintainer") %]">管理员</a>
+      禁用, 不能修改。
     </p>
   [% END %]
 
@@ -42,7 +42,7 @@
             <select name="[% name FILTER html %]" id="[% name FILTER html %]">
               <option value="[% default_name FILTER html %]"
                 [% ' selected="selected"' IF settings.${name}.is_default %]>
-                Site Default ([% setting_descs.${default_val} OR default_val FILTER html %])
+                默认值 ([% setting_descs.${default_val} OR default_val FILTER html %])
               </option>
               [% FOREACH x = settings.${name}.legal_values %]
                 <option value="[% x FILTER html %]"
@@ -56,7 +56,7 @@
           [% ELSE %]
             <select name="[% name FILTER html %]" id="[% name FILTER html %]" disabled="disabled">
               <option value="[% default_name FILTER html %]">
-                Site Default ([% setting_descs.${default_val} OR default_val FILTER html %])
+                默认值 ([% setting_descs.${default_val} OR default_val FILTER html %])
               </option>
             </select>
           [% END %]

@@ -21,7 +21,7 @@
   <tr>
     <td>
       [% IF has_bits.size %]
-        You have the following permission bits set on your account:
+        帐号当前拥有以下的权限:
         <table align="center">
           [% FOREACH bit_description = has_bits %]
             <tr>
@@ -48,17 +48,15 @@
         [% END %]
 
       [% ELSE %]
-        There are no permission bits set on your account.
+        帐号当前没有被设置任何权限。
       [% END %]
 
       [% IF user.in_group('editusers') %]
         <br>
-        You have editusers privileges.  You can turn on and off
-        all permissions for all users.
+        你拥有 editusers 的权限。可以开启或关闭所有用户的所有权限。
       [% ELSIF set_bits.size %]
         <br>
-        And you can turn on or off the following bits for
-        <a href="editusers.cgi">other users</a>:
+         你可以开启或关闭<a href="editusers.cgi">其他用户</a>的下列权限：
           <table align="center">
           [% FOREACH bit_description = set_bits %]
             <tr>
@@ -71,8 +69,8 @@
 
       [% IF user.in_group('bz_sudoers') %]
         <br>
-        You are a member of the <b>bz_sudoers</b> group, so you can 
-        <a href="relogin.cgi?action=prepare-sudo">impersonate someone else</a>.
+        你属于<b>bz_sudoers</b>组, 可以 
+        <a href="relogin.cgi?action=prepare-sudo">以其他用户身份进行操作。</a>.
       [% END %]
     </td>
   </tr>

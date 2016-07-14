@@ -24,7 +24,7 @@
 
 [% filtered_login = user.login FILTER html %]
 [% PROCESS global/header.html.tmpl
-   title = "User Preferences"
+   title = "首选项"
    subheader = filtered_login
    style_urls = ['skins/standard/admin.css']
    javascript_urls = ['js/util.js', 'js/field.js']
@@ -32,15 +32,15 @@
    yui = ['autocomplete']
  %]
 
-[% tabs = [{ name => "settings", label => "General Preferences",
+[% tabs = [{ name => "settings", label => "通用设置",
               link => "userprefs.cgi?tab=settings", saveable => "1" },
-            { name => "email", label => "Email Preferences", 
+            { name => "email", label => "Email设置", 
               link => "userprefs.cgi?tab=email", saveable => "1" },
-            { name => "saved-searches", label => "Saved Searches", 
+            { name => "saved-searches", label => "保存的搜索", 
               link => "userprefs.cgi?tab=saved-searches", saveable => "1" },
-            { name => "account", label => "Account Information",
+            { name => "account", label => "账户信息",
               link => "userprefs.cgi?tab=account", saveable => "1" },
-            { name => "permissions", label => "Permissions", 
+            { name => "permissions", label => "权限设置", 
               link => "userprefs.cgi?tab=permissions", saveable => "0" } ] %]
 
 [% Hook.process('tabs') %]
@@ -59,12 +59,11 @@
 
 [% IF changes_saved %]
   <div id="message">
-    The changes to your [% current_tab.label FILTER lower %] have been saved.
+    对[% current_tab.label FILTER lower %]的修改已保存。
 
     [% IF email_changes_saved %]
       <p>
-        An email has been sent to both old and new email
-        addresses to confirm the change of email address.
+        邮件已经发送到原邮件地址和新的邮件地址。
       </p>
     [% END %]
   </div>
@@ -89,7 +88,7 @@
         <tr>
           <td width="150">&nbsp;</td>
           <td>
-            <input type="submit" id="update" value="Submit Changes">
+            <input type="submit" id="update" value="保存设置">
           </td>
         </tr>
       </table>

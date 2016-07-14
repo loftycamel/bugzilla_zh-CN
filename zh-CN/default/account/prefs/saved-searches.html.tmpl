@@ -28,31 +28,30 @@
   </script>
 [% END %]
 
-<p>Your saved searches are as follows:</p>
+<p>保存的搜索列表:</p>
 
 <blockquote>
   <table border="1" cellpadding="3">  
     <tr>
       <th>
-        Search
+        搜索
       </th>
       <th>
-        Run
+        执行
       </th>
       <th>
-        Edit
+        编辑
       </th>
       <th>
-        Forget
+        删除
       </th>
       <th>
-        Show in
-        Footer
+        在页尾显示
       </th>
       [% may_share = user.in_group(Param('querysharegroup')) && queryshare_groups.size %]
       [% IF may_share %]
         <th>
-          Share With a Group
+          分组
         </th>
       [% END %]
     </tr>
@@ -60,7 +59,7 @@
       <td>My [% terms.Bugs %]</td>
       <td>
         [% filtered_username = user.login FILTER uri %]
-        <a href="[% Param('mybugstemplate').replace('%userid%', filtered_username) %]">Run</a>
+        <a href="[% Param('mybugstemplate').replace('%userid%', filtered_username) %]">执行</a>
       </td>
       <td>
         &nbsp;
@@ -85,19 +84,19 @@
         <td>[% q.name FILTER html %]</td>
         <td>
           <a href="buglist.cgi?cmdtype=dorem&amp;remaction=run&amp;namedcmd=[% q.name FILTER uri %]
-                   [% IF q.shared_with_group.id %]&amp;sharer_id=[% user.id FILTER uri %][% END %]">Run</a>
+                   [% IF q.shared_with_group.id %]&amp;sharer_id=[% user.id FILTER uri %][% END %]">执行</a>
         </td>
         <td>
           <a href="query.cgi?[% q.edit_link FILTER html %]&amp;known_name=
-                   [% q.name FILTER uri %]">Edit</a>
+                   [% q.name FILTER uri %]">编辑</a>
         </td>
         <td>
           [% IF q.used_in_whine %]
-            Remove from <a href="editwhines.cgi">whining</a> first
+            先从<a href="editwhines.cgi">订阅</a>中刪除
           [% ELSE %]
             <a href="buglist.cgi?cmdtype=dorem&amp;remaction=forget&amp;namedcmd=
                      [% q.name FILTER uri %]&amp;token=
-                     [% issue_hash_token([q.id, q.name]) FILTER uri %]">Forget</a>
+                     [% issue_hash_token([q.id, q.name]) FILTER uri %]">删除</a>
           [% END %]
         </td>
         <td align="center">
@@ -111,7 +110,7 @@
           <td>
             <select name="share_[% q.id FILTER html %]"
               [% IF user.can_bless %] onchange="update_checkbox(this);"[% END %]>
-              <option value="">Don't share</option>
+              <option value="">不分享</option>
               [% FOREACH group = queryshare_groups %]
                 <option value="[% group.id %]"
                         [% ' selected="selected"' 
@@ -124,12 +123,11 @@
                      %]class="bz_default_hidden"[% END %]>
                 <input type="checkbox" id="force_[% q.id FILTER html %]"
                        name="force_[% q.id FILTER html %]" value="1">
-                <label for="force_[% q.id FILTER html %]">Add to footer</label>
+                <label for="force_[% q.id FILTER html %]">添加到页尾</label>
               </span>
             [% END %]
             [% IF q.shared_with_users %]
-              (shared with [% q.shared_with_users FILTER html %]
-              [%+ q.shared_with_users > 1 ? "users" : "user" %])
+              (已和 [% q.shared_with_users FILTER html %] 位用户分享)
             [% END %]
           </td>
         [% END %]
@@ -137,35 +135,32 @@
     [% END %]
   </table>
 [% IF user.can_bless %]
-  <p>Note that for every search that has the "Add to footer" selected, a
-     link to the shared search is added to the footer of every user that is
-     a direct member of the group at the time you click Submit Changes.</p>
+  <p>注意，每一个添加到页尾的 $terms.bug ，其他分享用户也会看到。</p>
 [% END %]
 </blockquote>
 
 [% IF user.queries_available.size %]
-  <p>You may use these searches saved and shared by others:</p>
+  <p>你可以使用这些保存的搜索或分享给其他人:</p>
 
   <table border="1" cellpadding="3">  
     <tr>
       <th>
-        Search
+        搜索
       </th>
       <th>
-        Shared By
+        分享人
       </th>
       <th>
-        Shared To
+        分享给
       </th>
       <th>
-        Run
+        执行
       </th>
       <th>
-        Edit
+        编辑
       </th>
       <th>
-        Show in
-        Footer
+        在页尾显示
       </th>
     </tr>
     [% FOREACH q = user.queries_available %]
@@ -176,11 +171,11 @@
         <td>
           <a href="buglist.cgi?cmdtype=dorem&amp;remaction=run&amp;namedcmd=
                    [% q.name FILTER uri %]&amp;sharer_id=
-                   [% q.user.id FILTER uri %]">Run</a>
+                   [% q.user.id FILTER uri %]">执行</a>
         </td>
         <td>
           <a href="query.cgi?[% q.edit_link FILTER html %]&amp;known_name=
-                   [% q.name FILTER uri %]">Edit</a>
+                   [% q.name FILTER uri %]">编辑</a>
         </td>
         <td align="center">
           <input type="checkbox" 
@@ -193,5 +188,5 @@
     [% END %]
   </table>
 [% ELSE %]
-  <p>No searches are shared with you by other users.</p>
+  <p>其他人还未和你分享搜索。</p>
 [% END %]

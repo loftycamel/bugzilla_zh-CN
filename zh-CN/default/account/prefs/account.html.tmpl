@@ -17,11 +17,11 @@
         || (user.authorizer.can_change_email && Param('allowemailchange')) %]
     <tr>
       <td colspan="3">
-        Please enter your existing password to confirm account changes.
+        请输入当前的密码：
       </td>
     </tr>
     <tr>
-      <th align="right">Password:</th>
+      <th align="right">密码:</th>
       <td>
         <input type="hidden" name="old_login" value="[% user.login FILTER html %]">
         <input type="password" name="old_password">
@@ -34,14 +34,14 @@
 
   [% IF user.authorizer.can_change_password %]
     <tr>
-      <th align="right">New password:</th>
+      <th align="right">新密码:</th>
       <td>
         <input type="password" name="new_password1">
       </td>
     </tr>              
 
     <tr>
-      <th align="right">Confirm new password:</th>
+      <th align="right">再次输入新密码:</th>
       <td>
         <input type="password" name="new_password2">
       </td>
@@ -49,7 +49,7 @@
   [% END %]
 
   <tr>
-    <th align="right">Your real name (optional, but encouraged):</th>
+    <th align="right">你的姓名(可选，推荐填写):</th>
     <td>
       <input size="35" name="realname" value="[% realname FILTER html %]">
     </td>
@@ -59,26 +59,26 @@
     [% IF login_change_date %]
       [% IF new_login_name %]
         <tr>
-          <th align="right">Pending email address:</th>
+          <th align="right">待确认的Email地址:</th>
           <td>[% new_login_name FILTER html %]</td>
         </tr>
         <tr>
-          <th align="right">Change request expires:</th>
+          <th align="right">请求变更过期时间:</th>
           <td>[% login_change_date FILTER time %]</td>
         </tr>
       [% ELSE %]
         <tr>
-          <th align="right">Confirmed email address:</th>
+          <th align="right">已确认的Email地址:</th>
           <td>[% user.login FILTER html %]</td>
         </tr>
         <tr>
-          <th align="right">Completion date:</th>
+          <th align="right">请求通过时间:</th>
           <td>[% login_change_date FILTER time %]</td>
         </tr>
       [% END %]
     [% ELSE %]
       <tr>
-        <th align="right">New email address:</th>
+        <th align="right">新email:</th>
         <td>
           <input size="35" name="new_login_name">
         </td>

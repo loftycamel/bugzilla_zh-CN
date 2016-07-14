@@ -22,7 +22,7 @@
   #%]
 
 [% title = BLOCK %]
-  Account History for '[% otheruser.login FILTER html %]'
+  帐号历史——'[% otheruser.login FILTER html %]'
 [% END %]
 
 
@@ -36,20 +36,20 @@
 
 [% columns =
   [{name               => 'who'
-    heading            => 'Who'
+    heading            => '操作人'
    }
    {name               => 'activity_when'
-    heading            => 'When'
+    heading            => '操作时间'
    }
    {name               => 'what'
-    heading            => 'What'
+    heading            => '操作内容'
     content_use_field  => 1
    }
    {name               => 'removed'
-    heading            => 'Removed'
+    heading            => '删除'
    }
    {name               => 'added'
-    heading            => 'Added'
+    heading            => '添加'
    }
   ]
 %]
@@ -61,12 +61,11 @@
 
 <p><a href="editusers.cgi?action=edit&amp;userid=
   [%- otheruser.id FILTER uri %]"
-  title="Edit user '[% otheruser.login FILTER html %]'">Edit this user</a> or
-  <a title="Search For Users" href="editusers.cgi">search for other accounts</a>
+  title="编辑用户 '[% otheruser.login FILTER html %]'">编辑用户</a> 或者
+  <a title="搜索用户" href="editusers.cgi">搜索其他账户</a>
   [% IF listselectionvalues.matchtype != 'exact' %]
-    or go <a title="Return to the user list"
-       href="editusers.cgi?action=list[% INCLUDE listselectionurlparams %]">back
-    to the user list</a>
+    或者 <a title="返回用户列表"
+       href="editusers.cgi?action=list[% INCLUDE listselectionurlparams %]">返回用户列表</a>
   [% END %]
 </p>
 
